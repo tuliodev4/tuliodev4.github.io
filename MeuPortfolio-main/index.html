@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulio Dev | Portfólio</title>
+    <meta name="description"
+        content="Portfólio de Tulio Henrique, desenvolvedor web full-stack. Confira meus projetos e entre em contato.">
+    <link rel="shortcut icon" href="./image/portfolio.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilos básicos */
+        .skill-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .project-image img:hover {
+            transform: scale(1.05);
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0ea5e9;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+        .scroll-to-top.show {
+            opacity: 1;
+        }
+        
+        /* Menu mobile */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background-color: white;
+            z-index: 40;
+            padding: 80px 20px 20px;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 30;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-menu {
+                position: static;
+                width: auto;
+                height: auto;
+                padding: 0;
+                background-color: transparent;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gradient-to-b from-stone-50 to-stone-100 text-gray-800">
+    <div id="overlay" class="overlay"></div>
+    
+    <header class="bg-white shadow-md fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <nav class="container mx-auto p-4 flex justify-between items-center">
+            <a href="#welcome" class="flex items-center space-x-2">
+                <span class="text-xl font-bold bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent">TULIO HENRIQUE</span>
+            </a>
+            <button id="menu-toggle" class="md:hidden focus:outline-none z-50">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            <ul id="menu" class="mobile-menu md:flex md:space-x-6 md:static md:bg-transparent md:w-auto md:shadow-none md:h-auto md:p-0">
+                <li class="mb-4 md:mb-0"><a href="#welcome" class="block py-2 hover:text-primary-500 transition-colors duration-300 nav-link">Início</a></li>
+                <li class="mb-4 md:mb-0"><a href="#about" class="block py-2 hover:text-primary-500 transition-colors duration-300 nav-link">Sobre</a></li>
+                <li class="mb-4 md:mb-0"><a href="#skills" class="block py-2 hover:text-primary-500 transition-colors duration-300 nav-link">Habilidades</a></li>
+                <li class="mb-4 md:mb-0"><a href="#projects" class="block py-2 hover:text-primary-500 transition-colors duration-300 nav-link">Projetos</a></li>
+                <li class="mb-4 md:mb-0"><a href="#contact" class="block py-2 hover:text-primary-500 transition-colors duration-300 nav-link">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="welcome" class="min-h-screen flex items-center justify-center pt-20 pb-12 px-4">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="text-center md:text-left md:w-1/2">
+                    <span class="inline-block px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4">
+                        Desenvolvedor Full Stack
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+                        Olá, eu sou <span class="bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent">Tulio Henrique</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-lg">
+                        Transformando ideias em experiências digitais incríveis através de código limpo e design intuitivo.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                        <a href="#projects" class="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            Ver Projetos
+                        </a>
+                        <a href="#contact" class="px-6 py-3 border-2 border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 transition-colors duration-300">
+                            Contato
+                        </a>
+                    </div>
+                    <div class="mt-12 flex space-x-4 justify-center md:justify-start">
+                        <a href="https://github.com/tuliohenrique" target="_blank" class="text-gray-600 hover:text-primary-600 transition-colors duration-300">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/tuliohenrique/" target="_blank" class="text-gray-600 hover:text-primary-600 transition-colors duration-300">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="mailto:contato@tuliohenrique.dev" class="text-gray-600 hover:text-primary-600 transition-colors duration-300">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-12 md:mt-0 md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 opacity-75 blur"></div>
+                        <img src="./image/undraw_programming_65t2.png" alt="Tulio Henrique programando" loading="lazy"
+                            class="relative rounded-xl shadow-lg w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover bg-white z-10">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 px-4">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-2/5 w-full">
+                    <div class="relative">
+                        <div class="absolute -inset-4 rounded-xl bg-gradient-to-r from-primary-400 to-primary-600 opacity-30 blur-lg"></div>
+                        <img src="./image/20240803_110519.jpg" alt="Foto de Tulio Henrique" loading="lazy"
+                            class="relative rounded-xl shadow-lg w-full max-w-md object-cover z-10">
+                    </div>
+                </div>
+                <div class="md:w-3/5 w-full mt-8 md:mt-0">
+                    <span class="inline-block px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4">
+                        Sobre Mim
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+                        Desenvolvedor apaixonado por criar soluções digitais
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Sou um desenvolvedor web full-stack em constante evolução, focado em criar soluções eficientes e de alta qualidade.
+                        Minha paixão por tecnologia me impulsiona a buscar sempre as melhores práticas de desenvolvimento.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Aprimoro constantemente minhas habilidades em <span class="font-semibold text-primary-700">HTML</span>, 
+                        <span class="font-semibold text-primary-700">CSS</span>, 
+                        <span class="font-semibold text-primary-700">JavaScript</span>
+                        <span class="font-semibold text-primary-700">React</span> para construir interfaces modernas e responsivas. 
+                        Utilizo <span class="font-semibold text-primary-700">Git</span> para controle de versão e colaboração, 
+                        e me aprofundo em <span class="font-semibold text-primary-700">Tailwind CSS</span> para criar layouts elegantes e eficientes.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600">2+</div>
+                            <div class="text-sm md:text-base text-gray-500">Anos de experiência</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600">20+</div>
+                            <div class="text-sm md:text-base text-gray-500">Projetos concluídos</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600">15+</div>
+                            <div class="text-sm md:text-base text-gray-500">Clientes satisfeitos</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600">5+</div>
+                            <div class="text-sm md:text-base text-gray-500">Tecnologias dominadas</div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="inline-block px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        Entre em contato
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 px-4 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="inline-block px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4">
+                    Minhas Habilidades
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Competências Técnicas & Pessoais</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Combinando habilidades técnicas e interpessoais para entregar projetos de alta qualidade e manter uma comunicação eficiente.
+                </p>
+            </div>
+
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">Hard Skills</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center skill-card">
+                        <div class="text-primary-500 mb-4 skill-icon">
+                            <i class="fab fa-html5 text-4xl"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2">HTML5</h4>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+                            <div class="bg-primary-500 h-2 rounded-full" style="width: 95%"></div>
+                        </div>
+                        <p class="text-sm text-gray-500">Avançado - 95%</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center skill-card">
+                        <div class="text-primary-500 mb-4 skill-icon">
+                            <i class="fab fa-css3-alt text-4xl"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2">CSS3</h4>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+                            <div class="bg-primary-500 h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                        <p class="text-sm text-gray-500">Avançado - 90%</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center skill-card">
+                        <div class="text-primary-500 mb-4 skill-icon">
+                            <i class="fab fa-js text-4xl"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2">JavaScript</h4>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+                            <div class="bg-primary-500 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                        <p class="text-sm text-gray-500">Intermediário/Avançado - 85%</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center skill-card">
+                        <div class="text-primary-500 mb-4 skill-icon">
+                            <i class="fab fa-react text-4xl"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold mb-2">React</h4>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+                            <div class="bg-primary-500 h-2 rounded-full" style="width: 80%"></div>
+                        </div>
+                        <p class="text-sm text-gray-500">Intermediário/Avançado - 80%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">Soft Skills</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-md p-6 soft-skill-card">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-comments text-primary-600 text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold">Comunicação</h4>
+                        </div>
+                        <p class="text-gray-600">
+                            Comunico ideias de forma clara e objetiva, facilitando o entendimento entre equipes e clientes.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 soft-skill-card">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-lightbulb text-primary-600 text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold">Resolução de Problemas</h4>
+                        </div>
+                        <p class="text-gray-600">
+                            Analiso desafios de forma estruturada e encontro soluções criativas e eficientes.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md p-6 soft-skill-card">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-users text-primary-600 text-xl"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold">Trabalho em Equipe</h4>
+                        </div>
+                        <p class="text-gray-600">
+                            Colaboro efetivamente em equipes multidisciplinares, compartilhando conhecimento e apoiando colegas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="inline-block px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4">
+                    Portfólio
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Meus Projetos Recentes</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Confira alguns dos projetos que desenvolvi, demonstrando minhas habilidades e experiência em desenvolvimento web.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden project-card">
+                    <div class="relative overflow-hidden project-image">
+                        <img src="https://via.placeholder.com/600x400/38bdf8/ffffff?text=VibePlay" alt="VibePlay - Aplicação de música" class="w-full h-48 object-cover transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-4 text-white">
+                                <span class="text-xs font-medium bg-primary-500 px-2 py-1 rounded">Web App</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">VibePlay</h3>
+                        <p class="text-gray-600 mb-4">
+                            Aplicação web interativa para reprodução de música, com recursos como controle de volume, busca por músicas e navegação por gêneros.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">React</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="https://github.com/tuliohenrique/vibe-play" target="_blank" class="text-primary-600 hover:text-primary-700 transition-colors">
+                                <i class="fab fa-github text-xl"></i> Código
+                            </a>
+                            <a href="https://vibeplay-web.vercel.app/" target="_blank" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                                Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden project-card">
+                    <div class="relative overflow-hidden project-image">
+                        <img src="https://via.placeholder.com/600x400/0ea5e9/ffffff?text=FootCoder" alt="FootCoder - E-commerce de camisetas" class="w-full h-48 object-cover transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-4 text-white">
+                                <span class="text-xs font-medium bg-primary-500 px-2 py-1 rounded">E-commerce</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">FootCoder</h3>
+                        <p class="text-gray-600 mb-4">
+                            Simulação de loja online especializada em camisetas de times de futebol, com sistema de carrinho e múltiplas opções de pagamento.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">React</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Tailwind CSS</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="https://github.com/tuliohenrique/FootCoder" target="_blank" class="text-primary-600 hover:text-primary-700 transition-colors">
+                                <i class="fab fa-github text-xl"></i> Código
+                            </a>
+                            <a href="https://foot-coder.vercel.app/" target="_blank" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                                Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden project-card">
+                    <div class="relative overflow-hidden project-image">
+                        <img src="https://via.placeholder.com/600x400/0284c7/ffffff?text=Lógica+Quiz" alt="Lógica Quiz - Jogo educativo" class="w-full h-48 object-cover transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-4 text-white">
+                                <span class="text-xs font-medium bg-primary-500 px-2 py-1 rounded">Educacional</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Lógica Quiz</h3>
+                        <p class="text-gray-600 mb-4">
+                            Jogo educativo para praticar lógica proposicional, desenvolvido para ajudar estudantes a aprimorar o raciocínio lógico.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">JavaScript</span>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">HTML/CSS</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="https://github.com/tuliohenrique/LogicaQuiz" target="_blank" class="text-primary-600 hover:text-primary-700 transition-colors">
+                                <i class="fab fa-github text-xl"></i> Código
+                            </a>
+                            <a href="https://logicaquiz.vercel.app/" target="_blank" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                                Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 px-4 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="inline-block px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4">
+                    Contato
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Vamos Trabalhar Juntos</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Estou disponível para novos projetos e oportunidades. Entre em contato para conversarmos sobre como posso ajudar a transformar suas ideias em realidade.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl shadow-md p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">Envie uma mensagem</h3>
+                        <form id="contactForm" action="https://formspree.io/f/xbllknvq" method="POST" target="_blank">
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+                                <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensagem</label>
+                                <textarea id="message" name="message" rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" required></textarea>
+                            </div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    // Elementos do menu
+                                    const menuToggle = document.getElementById('menu-toggle');
+                                    const menu = document.getElementById('menu');
+                                    const overlay = document.getElementById('overlay');
+                                    const navLinks = document.querySelectorAll('.nav-link');
+                                    
+                                    // Função para alternar o menu
+                                    function toggleMenu() {
+                                        menu.classList.toggle('active');
+                                        overlay.classList.toggle('active');
+                                        
+                                        // Mudar o ícone do botão
+                                        const icon = menuToggle.querySelector('i');
+                                        if (menu.classList.contains('active')) {
+                                            icon.classList.remove('fa-bars');
+                                            icon.classList.add('fa-times');
+                                        } else {
+                                            icon.classList.remove('fa-times');
+                                            icon.classList.add('fa-bars');
+                                        }
+                                    }
+                                    
+                                    // Event listeners
+                                    menuToggle.addEventListener('click', toggleMenu);
+                                    overlay.addEventListener('click', toggleMenu);
+                                    
+                                    // Fechar menu ao clicar em um link
+                                    navLinks.forEach(link => {
+                                        link.addEventListener('click', function() {
+                                            if (menu.classList.contains('active')) {
+                                                toggleMenu();
+                                            }
+                                        });
+                                    });
+                                    
+                                    // Scroll to top button
+                                    const scrollToTopBtn = document.createElement('button');
+                                    scrollToTopBtn.className = 'scroll-to-top';
+                                    scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+                                    document.body.appendChild(scrollToTopBtn);
+                                    
+                                    window.addEventListener('scroll', function() {
+                                        if (window.pageYOffset > 300) {
+                                            scrollToTopBtn.classList.add('show');
+                                        } else {
+                                            scrollToTopBtn.classList.remove('show');
+                                        }
+                                    });
+                                    
+                                    scrollToTopBtn.addEventListener('click', function() {
+                                        window.scrollTo({
+                                            top: 0,
+                                            behavior: 'smooth'
+                                        });
+                                    });
+                                    
+                                    // Navbar shrink on scroll
+                                    const navbar = document.getElementById('navbar');
+                                    window.addEventListener('scroll', function() {
+                                        if (window.pageYOffset > 50) {
+                                            navbar.classList.add('py-2');
+                                            navbar.classList.remove('py-4');
+                                        } else {
+                                            navbar.classList.add('py-4');
+                                            navbar.classList.remove('py-2');
+                                        }
+                                    });
+                                    
+                                    // Highlight active section in navbar
+                                    const sections = document.querySelectorAll('section');
+                                    window.addEventListener('scroll', function() {
+                                        let current = '';
+                                        
+                                        sections.forEach(section => {
+                                            const sectionTop = section.offsetTop;
+                                            const sectionHeight = section.clientHeight;
+                                            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                                                current = section.getAttribute('id');
+                                            }
+                                        });
+                                        
+                                        navLinks.forEach(link => {
+                                            link.classList.remove('text-primary-500');
+                                            if (link.getAttribute('href').substring(1) === current) {
+                                                link.classList.add('text-primary-500');
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>                            
+                            <button type="submit" class="w-full py-3 bg-primary-600 text-white rounded-lg
